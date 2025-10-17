@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Almacenamiento</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Pantalla de Login/Registro -->
+    <div id="authScreen" class="screen active">
+        <div class="auth-container">
+            <div class="auth-header">
+                <i class="fas fa-fire"></i>
+                <h1>Mi Plataforma</h1>
+                <p>Almacena, comparte y gestiona tus archivos</p>
+            </div>
+
+            <!-- Formulario de Login -->
+            <div id="loginForm" class="auth-form">
+                <h2>Iniciar Sesión</h2>
+                <form onsubmit="login(event)">
+                    <div class="form-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="loginUsername" placeholder="Usuario" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="loginPassword" placeholder="Contraseña" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                </form>
+                <p class="switch-form">¿No tienes cuenta? <a href="#" onclick="showRegister()">Regístrate</a></p>
+            </div>
+
+            <!-- Formulario de Registro -->
+            <div id="registerForm" class="auth-form" style="display: none;">
+                <h2>Crear Cuenta</h2>
+                <form onsubmit="register(event)">
+                    <div class="form-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="regUsername" placeholder="Usuario" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="regEmail" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="regPassword" placeholder="Contraseña" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                </form>
+                <p class="switch-form">¿Ya tienes cuenta? <a href="#" onclick="showLogin()">Inicia sesión</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla Principal (Dashboard) -->
+    <div id="dashboardScreen" class="screen">
+        <!-- Navegación -->
+        <nav class="navbar">
+            <div class="nav-left">
+                <i class="fas fa-fire"></i>
+                <span class="logo-text">Mi Plataforma</span>
+            </div>
+            <div class="nav-right">
+                <span class="username" id="navUsername"></span>
+                <button class="btn btn-small" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Salir
+                </button>
+            </div>
+        </nav>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="menu-item active" onclick="showSection('myFiles')">
+                <i class="fas fa-folder"></i>
+                <span>Mis Archivos</span>
+            </div>
+            <div class="menu-item" onclick="showSection('publicFiles')">
+                <i class="fas fa-globe"></i>
+                <span>Archivos Públicos</span>
+            </div>
+            <div class="menu-item" onclick="showSection('apps')">
+                <i class="fas fa-download"></i>
+                <span>Apps Disponibles</span>
+            </div>
+            <div class="menu-item" id="adminMenuItem" style="display: none;" onclick="showSection('admin')">
+                <i class="fas fa-cog"></i>
+                <span>Panel Admin</span>
+            </div>
+        </div>
+
+        <!-- Contenido Principal -->
+        <div class="main-content">
+            <!-- Sección: Mis Archivos -->
+            <div id="myFilesSection" class="content-section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-folder"></i> Mis Archivos</h2>
+                    <button class="btn btn-primary" onclick="showUploadModal()">
+                        <i class="fas fa-upload"></i> Subir Archivo
+                    </button>
+                </div>
+
+                <!-- Estadísticas -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-file"></i>
+                        <div>
+                            <div class="stat-number" id="totalFiles">0</div>
+                            <div class="stat-label">Archivos</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-hdd"></i>
+                        <div>
+                            <div class="stat-number" id="totalSize">0 MB</div>
+                            <div class="stat-label">Almacenamiento</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-eye"></i>
+                        <div>
+                            <div class="stat-number" id="publicFiles">0</div>
+                            <div class="stat-label">Públicos</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lista de archivos -->
+                <div class="files-container" id="myFilesList">
+                    <div class="loading">Cargando archivos...</div>
+                </div>
+            </div>
+
+            <!-- Sección: Archivos Públicos -->
+            <div id="publicFilesSection" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-globe"></i> Archivos Públicos</h2>
+                </div>
+                <div class="files-container" id="publicFilesList">
+                    <div class="loading">Cargando archivos públicos...</div>
+                </div>
+            </div>
+
+            <!-- Sección: Apps -->
+            <div id="appsSection" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-download"></i> Apps Disponibles</h2>
+                </div>
+                <div class="apps-grid" id="appsList">
+                    <div class="loading">Cargando apps...</div>
+                </div>
+            </div>
+
+            <!-- Sección: Panel Admin -->
+            <div id="adminSection" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-cog"></i> Panel de Administrador</h2>
+                    <button class="btn btn-primary" onclick="showUploadAppModal()">
+                        <i class="fas fa-plus"></i> Subir App
+                    </button>
+                </div>
+                <div class="admin-content">
+                    <h3>Apps Subidas</h3>
+                    <div id="adminAppsList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Subir Archivo -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Subir Archivo</h3>
+                <button class="close-btn" onclick="closeModal('uploadModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="uploadFile(event)">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Arrastra tu archivo aquí o haz clic para seleccionar</p>
+                        <input type="file" id="fileInput" required>
+                    </div>
+                    <div id="selectedFileName" class="selected-file"></div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="isPublicCheck">
+                            <span>Hacer público (visible para todos)</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Subir</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Subir App (Admin) -->
+    <div id="uploadAppModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Subir App</h3>
+                <button class="close-btn" onclick="closeModal('uploadAppModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="uploadApp(event)">
+                    <div class="form-group">
+                        <input type="text" id="appName" placeholder="Nombre de la App" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="appVersion" placeholder="Versión (ej: 1.0.0)" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="appDescription" placeholder="Descripción" rows="3"></textarea>
+                    </div>
+                    <div class="upload-area">
+                        <i class="fas fa-file-archive"></i>
+                        <p>Seleccionar archivo de la app</p>
+                        <input type="file" id="appFileInput" required>
+                    </div>
+                    <div id="selectedAppFileName" class="selected-file"></div>
+                    <button type="submit" class="btn btn-primary">Subir App</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

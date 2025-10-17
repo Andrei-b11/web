@@ -1,150 +1,269 @@
-# 🔥 Sitio Web Moderno - Negro y Naranja
+# 🔥 Plataforma de Almacenamiento Completa
 
-Una página web moderna y atractiva con temática negro y naranja, lista para compartir con todo el mundo.
+Una plataforma web completa con sistema de usuarios, almacenamiento privado/público y distribución de apps.
 
-## ✨ Características
+## ✨ Características Principales
 
-- 🎨 **Diseño moderno** con colores negro y naranja
-- 📱 **Totalmente responsive** - se ve perfecta en móviles y desktop
-- ⚡ **Animaciones suaves** y efectos visuales
-- 🔄 **Navegación fluida** con scroll suave
-- 📊 **Contador de estadísticas** animado
-- 🖼️ **Galería de proyectos** con efectos hover
-- 📬 **Formulario de contacto** funcional
-- 🌟 **Efectos parallax** y partículas flotantes
+### 👥 Sistema de Usuarios
+- ✅ Registro de nuevos usuarios
+- ✅ Login con sesiones persistentes
+- ✅ Sistema de roles (Usuario / Administrador)
+- ✅ Contraseñas encriptadas con bcrypt
 
-## 🚀 Cómo Abrir Localmente
+### 📁 Almacenamiento Personal
+- ✅ Cada usuario tiene su propio espacio
+- ✅ Subir archivos (hasta 100MB)
+- ✅ Archivos privados o públicos
+- ✅ Descargar archivos propios
+- ✅ Eliminar archivos
+- ✅ Cambiar privacidad (privado/público)
+- ✅ Estadísticas personales
 
-1. **Abre el archivo `index.html`** en tu navegador:
-   - Haz doble clic en `index.html`
-   - O arrastra el archivo a tu navegador
+### 🌍 Archivos Públicos
+- ✅ Ver archivos públicos de todos los usuarios
+- ✅ Descargar archivos públicos
+- ✅ Ver quién subió cada archivo
 
-¡Eso es todo! La página funciona sin necesidad de servidor.
+### 📱 Sistema de Apps (Admin)
+- ✅ El admin puede subir apps para que todos descarguen
+- ✅ Apps con nombre, versión y descripción
+- ✅ Contador de descargas
+- ✅ Archivos grandes (hasta 500MB)
+- ✅ Panel de administración
 
-## 🌍 Cómo Compartir con Todo el Mundo
+### 🎨 Interfaz Moderna
+- ✅ Tema negro y naranja
+- ✅ Responsive (móvil y desktop)
+- ✅ Animaciones suaves
+- ✅ Notificaciones visuales
+- ✅ Drag & drop para subir archivos
 
-Tienes varias opciones gratuitas para publicar tu sitio web:
+## 🚀 Instalación y Uso
 
-### **Opción 1: GitHub Pages (RECOMENDADO)** 
-Es gratis y fácil de usar.
+### Paso 1: Instalar Dependencias
 
-1. Crea una cuenta en [GitHub](https://github.com)
-2. Crea un nuevo repositorio
-3. Sube todos los archivos (index.html, styles.css, script.js)
-4. Ve a Settings → Pages
-5. Selecciona la rama "main" y guarda
-6. Tu sitio estará en: `https://tu-usuario.github.io/nombre-repositorio`
+```bash
+npm install
+```
 
-### **Opción 2: Netlify**
-Super fácil con drag & drop.
+### Paso 2: Iniciar el Servidor
 
-1. Ve a [netlify.com](https://netlify.com)
-2. Arrastra la carpeta completa del proyecto
-3. ¡Listo! Te dan una URL automáticamente
-4. URL ejemplo: `https://tu-sitio.netlify.app`
+```bash
+npm start
+```
 
-### **Opción 3: Vercel**
-Similar a Netlify, muy rápido.
+### Paso 3: Abrir en el Navegador
 
-1. Ve a [vercel.com](https://vercel.com)
-2. Importa tu proyecto
-3. Deploy automático
-4. URL ejemplo: `https://tu-sitio.vercel.app`
+```
+http://localhost:3000
+```
 
-### **Opción 4: 000webhost**
-Hosting tradicional gratuito.
+## 👤 Credenciales por Defecto
 
-1. Crea cuenta en [000webhost.com](https://www.000webhost.com/)
-2. Sube archivos por FTP
-3. Dominio gratis incluido
+**Usuario Administrador:**
+- Usuario: `admin`
+- Contraseña: `admin123`
+
+⚠️ **IMPORTANTE:** Cambia la contraseña del admin después del primer login.
+
+## 📖 Cómo Usar la Plataforma
+
+### Para Usuarios Normales:
+
+1. **Registrarse**
+   - Haz clic en "Regístrate"
+   - Completa el formulario
+   - Inicia sesión
+
+2. **Subir Archivos**
+   - Ve a "Mis Archivos"
+   - Haz clic en "Subir Archivo"
+   - Arrastra tu archivo o selecciónalo
+   - Marca "Hacer público" si quieres compartirlo
+   - Haz clic en "Subir"
+
+3. **Gestionar Archivos**
+   - 👁️ **Icono ojo**: Cambiar entre privado/público
+   - ⬇️ **Icono descarga**: Descargar el archivo
+   - 🗑️ **Icono basura**: Eliminar el archivo
+
+4. **Ver Archivos Públicos**
+   - Ve a "Archivos Públicos"
+   - Descarga archivos de otros usuarios
+
+5. **Descargar Apps**
+   - Ve a "Apps Disponibles"
+   - Descarga las apps que el admin haya subido
+
+### Para Administradores:
+
+1. **Subir Apps**
+   - Ve a "Panel Admin"
+   - Haz clic en "Subir App"
+   - Completa el formulario
+   - Sube el archivo de la app
+   - Los usuarios podrán descargarla
+
+2. **Gestionar Apps**
+   - Ver lista de apps subidas
+   - Ver estadísticas de descargas
+   - Eliminar apps
+
+## 🗄️ Base de Datos
+
+La plataforma usa **SQLite** (archivo `database.db`) que se crea automáticamente.
+
+### Tablas:
+- **users**: Usuarios registrados
+- **files**: Archivos de usuarios
+- **apps**: Apps para descargar
+- **folders**: Carpetas de usuarios
 
 ## 📁 Estructura de Archivos
 
 ```
-├── index.html      # Página principal
-├── styles.css      # Todos los estilos y diseño
-├── script.js       # Interactividad y animaciones
-└── README.md       # Este archivo
+├── server.js              # Servidor Express
+├── package.json           # Dependencias
+├── database.db           # Base de datos SQLite (se crea automáticamente)
+├── public/
+│   ├── index.html        # Interfaz principal
+│   ├── styles.css        # Estilos
+│   └── app.js            # Lógica del frontend
+├── uploads/
+│   ├── users/            # Archivos de usuarios
+│   └── apps/             # Apps para descargar
+└── README.md             # Este archivo
 ```
 
-## 🎨 Personalización
+## 🔒 Seguridad
 
-### Cambiar Colores
+- ✅ Contraseñas hasheadas con bcrypt
+- ✅ Sesiones con express-session
+- ✅ Verificación de permisos en cada endpoint
+- ✅ Archivos privados solo accesibles por el dueño
+- ✅ Panel admin solo para administradores
 
-Edita el archivo `styles.css` en las líneas 9-14:
+## 🌐 Para Compartir con Todo el Mundo
 
-```css
-:root {
-    --primary-color: #ff6600;     /* Color naranja principal */
-    --secondary-color: #ff8c3a;   /* Naranja secundario */
-    --dark-bg: #0a0a0a;          /* Fondo negro */
-    --dark-secondary: #1a1a1a;   /* Negro secundario */
-    --text-light: #ffffff;       /* Texto blanco */
-    --text-gray: #cccccc;        /* Texto gris */
-}
+### Opción 1: Hosting Gratuito con Base de Datos
+
+**Heroku** (Recomendado para esta app):
+1. Crea cuenta en [heroku.com](https://heroku.com)
+2. Instala Heroku CLI
+3. Ejecuta:
+   ```bash
+   git init
+   heroku create nombre-de-tu-app
+   git add .
+   git commit -m "Initial commit"
+   git push heroku main
+   ```
+
+**Render** (Más fácil):
+1. Ve a [render.com](https://render.com)
+2. Conecta tu repositorio de GitHub
+3. Deploy automático
+4. URL: `https://tu-app.onrender.com`
+
+### Opción 2: VPS (Control Total)
+
+**DigitalOcean, AWS, Google Cloud**:
+1. Crea un servidor
+2. Instala Node.js
+3. Sube tu código
+4. Ejecuta `npm install && npm start`
+5. Configura un dominio
+
+### Opción 3: Túnel Local (Para Pruebas)
+
+**ngrok** (Rápido para mostrar):
+```bash
+# Instala ngrok
+npm install -g ngrok
+
+# Ejecuta el servidor
+npm start
+
+# En otra terminal
+ngrok http 3000
+```
+Te dará una URL pública temporal.
+
+## 🛠️ Configuración Avanzada
+
+### Cambiar Puerto
+
+Edita `server.js` línea 12:
+```javascript
+const PORT = 3000; // Cambia a tu puerto deseado
 ```
 
-### Cambiar Textos
+### Cambiar Secret de Sesión
 
-Abre `index.html` y modifica:
-- **Nombre del sitio**: Línea 18 (cambiar "MiSitio")
-- **Título principal**: Línea 38 (cambiar "Bienvenido a Mi Sitio Web")
-- **Información de contacto**: Líneas 156-174
-
-### Agregar Imágenes
-
-Para agregar imágenes de fondo en la galería, edita `styles.css` línea 371:
-
-```css
-.gallery-item {
-    background-image: url('ruta/a/tu/imagen.jpg');
-    background-size: cover;
-    background-position: center;
-}
+Edita `server.js` línea 94:
+```javascript
+secret: 'tu-secreto-super-seguro-cambialo',
 ```
 
-## 📱 Secciones Incluidas
+### Limites de Archivos
 
-1. **Navegación** - Menú fijo con efecto scroll
-2. **Hero** - Página de bienvenida con animaciones
-3. **Servicios** - 6 tarjetas de servicios con iconos
-4. **Estadísticas** - Contadores animados
-5. **Galería** - 6 proyectos con efecto hover
-6. **Contacto** - Formulario y datos de contacto
-7. **Footer** - Pie de página con redes sociales
+Edita `server.js`:
+- Línea 124: Archivos de usuario (100MB por defecto)
+- Línea 134: Apps (500MB por defecto)
 
-## 🔧 Tecnologías Utilizadas
+## 📊 API Endpoints
 
-- HTML5
-- CSS3 (Grid, Flexbox, Animaciones)
-- JavaScript (Vanilla)
-- Font Awesome (Iconos)
+### Autenticación
+- `POST /api/auth/register` - Registrar usuario
+- `POST /api/auth/login` - Iniciar sesión
+- `POST /api/auth/logout` - Cerrar sesión
+- `GET /api/auth/check` - Verificar sesión
 
-## 🎯 Características Técnicas
+### Archivos de Usuario
+- `POST /api/files/upload` - Subir archivo
+- `GET /api/files/my-files` - Obtener mis archivos
+- `GET /api/files/public` - Obtener archivos públicos
+- `PUT /api/files/:id/privacy` - Cambiar privacidad
+- `GET /api/files/download/:id` - Descargar archivo
+- `DELETE /api/files/:id` - Eliminar archivo
 
-- ✅ Sin dependencias de frameworks
-- ✅ Código limpio y comentado
-- ✅ SEO friendly
-- ✅ Velocidad de carga optimizada
-- ✅ Compatible con todos los navegadores modernos
-- ✅ Accesibilidad mejorada
+### Apps
+- `POST /api/apps/upload` - Subir app (solo admin)
+- `GET /api/apps` - Obtener todas las apps
+- `GET /api/apps/download/:id` - Descargar app
+- `DELETE /api/apps/:id` - Eliminar app (solo admin)
 
-## 📞 Soporte
+### Estadísticas
+- `GET /api/stats` - Obtener estadísticas del usuario
 
-Si tienes preguntas o necesitas ayuda, puedes:
-- Editar el formulario de contacto para que te envíe emails
-- Agregar tu información de contacto real
-- Conectar con servicios como FormSpree o EmailJS
+## 🐛 Solución de Problemas
 
-## 🌟 Próximas Mejoras
+**Error: Cannot find module**
+```bash
+npm install
+```
 
-Ideas para expandir tu sitio:
-- [ ] Blog integrado
-- [ ] Sistema de comentarios
-- [ ] Chat en vivo
-- [ ] Múltiples idiomas
-- [ ] Modo claro/oscuro
-- [ ] Tienda online
+**Error: Puerto en uso**
+- Cambia el puerto en `server.js`
+
+**No puedo subir archivos**
+- Verifica permisos de la carpeta `uploads/`
+
+**La base de datos no se crea**
+- Verifica que tengas permisos de escritura en la carpeta
+
+## 🎯 Próximas Mejoras
+
+Ideas para expandir:
+- [ ] Carpetas anidadas para organizar archivos
+- [ ] Búsqueda de archivos
+- [ ] Vista previa de imágenes
+- [ ] Compartir archivos con link temporal
+- [ ] Límite de almacenamiento por usuario
+- [ ] Compresión automática de archivos
+- [ ] Papelera de reciclaje
+- [ ] Múltiples archivos a la vez
+- [ ] Integración con Google Drive / Dropbox
 
 ## 📄 Licencia
 
@@ -152,7 +271,16 @@ Uso libre - Puedes modificar y usar como quieras.
 
 ---
 
-**¡Disfruta tu nuevo sitio web! 🚀🔥**
+## 🎉 ¡Tu Plataforma Está Lista!
 
-Para compartir tu sitio, simplemente sube los archivos a cualquiera de las plataformas mencionadas arriba.
+1. Ejecuta `npm install`
+2. Ejecuta `npm start`
+3. Abre http://localhost:3000
+4. Login como admin o crea tu cuenta
+5. ¡Empieza a subir archivos!
 
+**¿Dudas? Revisa el código - está comentado y organizado.**
+
+---
+
+**Creado con ❤️ y Node.js**
